@@ -19,13 +19,16 @@ public class Hero {
     @Override
     public String toString() {
         String raceString = "";
-        switch (race){
+        switch (this.race){
             case 0:
                 raceString = "Human";
+                break;
             case 1:
                 raceString = "Dwarf";
+                break;
             case 2:
                 raceString = "Elf";
+                break;
             default:
         }
 

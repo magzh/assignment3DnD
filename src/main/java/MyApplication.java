@@ -138,7 +138,7 @@ public class MyApplication {
         }
         try {
             con = DriverManager.getConnection(connectionString,"cdwxnizx","bi0XwY7hGdr4e7u_lWpQh_8G45RxB2A3");
-            String requestedName = "";
+
 
             String sql = "SELECT id, name, race, strength, agility, intelligence, wins, losses FROM heroes WHERE" + search;
             Statement stmt = con.createStatement();
@@ -168,6 +168,9 @@ public class MyApplication {
                     System.out.println("could not close the connection: " + e.getMessage());
                 }
             }
+        }
+        if (heroes.size()==0){
+            System.out.println("Hero not found");
         }
         for (Hero hero : heroes) {
             System.out.println(hero);
@@ -240,7 +243,7 @@ public class MyApplication {
         System.out.println("Select your command:\n" +
                 "1 Search by fighter ID\n" +
                 "2 Show all\n" +
-                "3 Return to Battle Mode");
+                "3 Return to Main Menu");
         Scanner sc = new Scanner(System.in);
         int mode = sc.nextInt();
         int searchid = 0;
@@ -259,7 +262,7 @@ public class MyApplication {
         }
         try {
             con = DriverManager.getConnection(connectionString,"cdwxnizx","bi0XwY7hGdr4e7u_lWpQh_8G45RxB2A3");
-            String requestedName = "";
+
 
             String sql = "SELECT id, name, fighter1, fighter2, winner, date FROM battles" + search;
             Statement stmt = con.createStatement();
@@ -291,7 +294,7 @@ public class MyApplication {
 
         try {
             con = DriverManager.getConnection(connectionString,"cdwxnizx","bi0XwY7hGdr4e7u_lWpQh_8G45RxB2A3");
-            String requestedName = "";
+
 
             String sql = "SELECT id, name, race, strength, agility, intelligence, wins, losses FROM heroes";
             Statement stmt = con.createStatement();
