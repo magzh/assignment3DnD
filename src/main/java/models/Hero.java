@@ -7,6 +7,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter @Setter
 public class Hero {
+    public int idd;
     private int id;
     private String name;
     private int race;
