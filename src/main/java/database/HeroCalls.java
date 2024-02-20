@@ -12,66 +12,11 @@ import java.util.regex.Pattern;
 public class HeroCalls {
     public static void CreateHero(Connection con, String connectionString){
         Scanner sc = new Scanner(System.in);
-        String name = "";
-        int race = 0;
-        int strength = 0;
-        int agility = 0;
-        int intelligence = 0;
-        boolean correctInput = true;
-        while (correctInput){
-            System.out.println("Give hero their name:");
-            name = sc.nextLine();
-            Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
-            Matcher m = p.matcher(name);
-            correctInput = m.find();
-            if (correctInput){
-                System.out.println("Do not use special characters");
-            }
-        }
-        correctInput = true;
-        do {
-            try {
-                System.out.println("Give hero their race:");
-                race = sc.nextInt();
-                correctInput = false;
-            } catch (InputMismatchException a){
-                sc.next();
-                System.out.println("Please input an integer");
-            }
-        } while (correctInput);
-        correctInput = true;
-        while (correctInput){
-            try {
-                System.out.println("Give hero their strength:");
-                strength = sc.nextInt();
-                correctInput = false;
-            } catch (InputMismatchException a){
-                sc.next();
-                System.out.println("Please input an integer");
-            }
-        }
-        correctInput = true;
-        while (correctInput){
-            try {
-                System.out.println("Give hero their agility:");
-                agility = sc.nextInt();
-                correctInput = false;
-            } catch (InputMismatchException a){
-                sc.next();
-                System.out.println("Please input an integer");
-            }
-        }
-        correctInput = true;
-        while (correctInput){
-            try {
-                System.out.println("Give hero their intelligence:");
-                intelligence = sc.nextInt();
-                correctInput = false;
-            } catch (InputMismatchException a){
-                sc.next();
-                System.out.println("Please input an integer");
-            }
-        }
+        String name = InputStringData("name", sc);
+        int race = InputIntData("race", sc);
+        int strength = InputIntData("strength", sc);
+        int agility = InputIntData("agility", sc);
+        int intelligence = InputIntData("intelligence", sc);
         try {
             con = DriverManager.getConnection(connectionString,"cdwxnizx","bi0XwY7hGdr4e7u_lWpQh_8G45RxB2A3");
             String requestedName = "";
@@ -94,6 +39,38 @@ public class HeroCalls {
                 }
             }
         }
+    }
+
+    private static String InputStringData (String dataName, Scanner sc){
+        String answer = "";
+        boolean correctInput = true;
+        while (correctInput){
+            System.out.println("Give hero their " + dataName + ":");
+            answer = sc.nextLine();
+            Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+            Matcher m = p.matcher(answer);
+            correctInput = m.find();
+            if (correctInput){
+                System.out.println("Do not use special characters");
+            }
+        }
+        return  answer;
+    }
+
+    private static int InputIntData (String dataName, Scanner sc){
+        int answer = 0;
+        boolean correctInput = true;
+        do {
+            try {
+                System.out.println("Give hero their " + dataName + ": ");
+                answer = sc.nextInt();
+                correctInput = false;
+            } catch (InputMismatchException a){
+                sc.next();
+                System.out.println("Please input an integer");
+            }
+        } while (correctInput);
+        return answer;
     }
 
     public static void SearchHero(Connection con, String connectionString){
