@@ -4,6 +4,7 @@ import models.Hero;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,21 +13,39 @@ public class HeroCalls {
     public static void CreateHero(Connection con, String connectionString){
         Scanner sc = new Scanner(System.in);
         String name = "";
+        int race = 0;
+        int strength = 0;
         boolean correctInput = true;
         while (correctInput){
             System.out.println("Give hero their name:");
             name = sc.next();
             Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
             Matcher m = p.matcher(name);
-            correctInput = !m.find();
-            if (!m.find()){
+            correctInput = m.find();
+            if (m.find()){
                 System.out.println("Do not use special characters");
             }
         }
-        System.out.println("Give hero their race:");
-        int race = sc.nextInt();
-        System.out.println("Give hero their strength:");
-        int strength = sc.nextInt();
+        correctInput = true;
+        while (correctInput){
+            try {
+                System.out.println("Give hero their race:");
+                race = sc.nextInt();
+                correctInput = false;
+            } catch (InputMismatchException a){
+                System.out.println("Please input an integer");
+            }
+        }
+        correctInput = true;
+        while (correctInput){
+            try {
+                System.out.println("Give hero their strength:");
+                strength = sc.nextInt();
+                correctInput = false;
+            } catch (InputMismatchException a){
+                System.out.println("Please input an integer");
+            }
+        }
         System.out.println("Give hero their agility:");
         int agility = sc.nextInt();
         System.out.println("Give hero their intelligence:");
