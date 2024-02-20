@@ -15,27 +15,30 @@ public class HeroCalls {
         String name = "";
         int race = 0;
         int strength = 0;
+        int agility = 0;
+        int intelligence = 0;
         boolean correctInput = true;
         while (correctInput){
             System.out.println("Give hero their name:");
-            name = sc.next();
+            name = sc.nextLine();
             Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
             Matcher m = p.matcher(name);
             correctInput = m.find();
-            if (m.find()){
+            if (correctInput){
                 System.out.println("Do not use special characters");
             }
         }
         correctInput = true;
-        while (correctInput){
+        do {
             try {
                 System.out.println("Give hero their race:");
                 race = sc.nextInt();
                 correctInput = false;
             } catch (InputMismatchException a){
+                sc.next();
                 System.out.println("Please input an integer");
             }
-        }
+        } while (correctInput);
         correctInput = true;
         while (correctInput){
             try {
@@ -43,13 +46,32 @@ public class HeroCalls {
                 strength = sc.nextInt();
                 correctInput = false;
             } catch (InputMismatchException a){
+                sc.next();
                 System.out.println("Please input an integer");
             }
         }
-        System.out.println("Give hero their agility:");
-        int agility = sc.nextInt();
-        System.out.println("Give hero their intelligence:");
-        int intelligence = sc.nextInt();
+        correctInput = true;
+        while (correctInput){
+            try {
+                System.out.println("Give hero their agility:");
+                agility = sc.nextInt();
+                correctInput = false;
+            } catch (InputMismatchException a){
+                sc.next();
+                System.out.println("Please input an integer");
+            }
+        }
+        correctInput = true;
+        while (correctInput){
+            try {
+                System.out.println("Give hero their intelligence:");
+                intelligence = sc.nextInt();
+                correctInput = false;
+            } catch (InputMismatchException a){
+                sc.next();
+                System.out.println("Please input an integer");
+            }
+        }
         try {
             con = DriverManager.getConnection(connectionString,"cdwxnizx","bi0XwY7hGdr4e7u_lWpQh_8G45RxB2A3");
             String requestedName = "";
