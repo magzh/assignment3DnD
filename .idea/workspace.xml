@@ -4,10 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0bdd2e1a-5326-4dbd-8eba-c12cc6acb8db" name="Changes" comment="Added data validation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/database/DatabaseCalls.java" afterDir="false" />
+    <list default="true" id="0bdd2e1a-5326-4dbd-8eba-c12cc6acb8db" name="Changes" comment="Reworked data input">
+      <change afterPath="$PROJECT_DIR$/src/main/java/database/AuthenticationCall.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/interfaces/EntityDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/CombatCalls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/CombatCalls.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/DatabaseCalls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/DatabaseCalls.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/database/HeroCalls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/HeroCalls.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/RaceCalls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/RaceCalls.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/Combat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Battle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Hero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Race.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Race.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Tournament.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +103,8 @@
       <workItem from="1707783805907" duration="2910000" />
       <workItem from="1707786947967" duration="14349000" />
       <workItem from="1708394952437" duration="16000" />
-      <workItem from="1708394980362" duration="11011000" />
+      <workItem from="1708394980362" duration="11154000" />
+      <workItem from="1708977648970" duration="22911000" />
     </task>
     <task id="LOCAL-00001" summary="asd">
       <option name="closed" value="true" />
@@ -135,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708406532874</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Reworked data input">
+      <option name="closed" value="true" />
+      <created>1708407805955</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708407805955</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +164,7 @@
     <MESSAGE value="asd" />
     <MESSAGE value="SOLID" />
     <MESSAGE value="Added data validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added data validation" />
+    <MESSAGE value="Reworked data input" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reworked data input" />
   </component>
 </project>

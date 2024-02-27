@@ -1,13 +1,13 @@
 package models;
 
-import interfaces.Combat;
+import interfaces.EntityDB;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @AllArgsConstructor
 @Getter @Setter
-public class Battle implements Combat {
+public class Battle implements EntityDB {
     private int id;
     private String name;
     private int fighter1;
@@ -15,13 +15,10 @@ public class Battle implements Combat {
     private boolean winner;
     private String date;
 
-    public void GenerateName(){
-
+    public String shortDescription(){
+        return "has scored a " + EntityDB.randomWord() + " victory against ";
     }
 
-    public String outcome(String f1, String f2){
-        return "";
-    }
 
     @Override
     public String toString() {

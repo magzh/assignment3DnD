@@ -1,12 +1,16 @@
 package models;
 
+import interfaces.EntityDB;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import static database.RaceCalls.GetRaces;
+
+
 @AllArgsConstructor
 @Getter @Setter
-public class Hero {
+public class Hero implements EntityDB {
     private int id;
     private String name;
     private int race;
@@ -16,21 +20,15 @@ public class Hero {
     private int wins;
     private int losses;
 
+    public String shortDescription(){
+        return EntityDB.randomWord() + name + " of " + GetRaces(race) + " tribe ";
+    }
+
     @Override
     public String toString() {
         String raceString = "";
-        switch (this.race){
-            case 0:
-                raceString = "Human";
-                break;
-            case 1:
-                raceString = "Dwarf";
-                break;
-            case 2:
-                raceString = "Elf";
-                break;
-            default:
-        }
+
+        raceString = GetRaces(race);
 
         return "Hero{" +
                 "id=" + id +

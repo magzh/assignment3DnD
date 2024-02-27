@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import static database.DatabaseCalls.RemoveCall;
+import static database.HeroCalls.UpdateHero;
+
 public class CombatCalls {
     public static void BattleMode(Connection con, String connectionString){
         System.out.println("Select your command:\n" +
@@ -131,7 +134,24 @@ public class CombatCalls {
                 return;
         }
         for (Battle battle : battles) {
-            System.out.println(battle);
+            int id1 = 0;
+            for (Hero hero: heroes) {
+                if (hero.getId() == battle.getFighter1()){
+                    id1 = heroes.indexOf(hero);
+                }
+            }
+            int id2 = 0;
+            for (Hero hero: heroes) {
+                if (hero.getId() == battle.getFighter2()){
+                    id2 = heroes.indexOf(hero);
+                }
+            }
+            if (battle.isWinner()){
+                System.out.println(heroes.get(id1).shortDescription() + battle.shortDescription() + heroes.get(id2).shortDescription());
+            }
+            else{
+                System.out.println(heroes.get(id2).shortDescription() + battle.shortDescription() + heroes.get(id1).shortDescription());
+            }
         }
     }
     public static void PitBattle(Connection con, String connectionString){
@@ -148,7 +168,6 @@ public class CombatCalls {
             search = " id = '" + id1 + "'";
             try {
                 con = DriverManager.getConnection(connectionString,"cdwxnizx","bi0XwY7hGdr4e7u_lWpQh_8G45RxB2A3");
-                String requestedName = "";
 
                 String sql = "SELECT id, name, race, strength, agility, intelligence, wins, losses FROM heroes WHERE" + search;
                 Statement stmt = con.createStatement();
@@ -194,7 +213,6 @@ public class CombatCalls {
             search = " id = '" + id2 + "'";
             try {
                 con = DriverManager.getConnection(connectionString,"cdwxnizx","bi0XwY7hGdr4e7u_lWpQh_8G45RxB2A3");
-                String requestedName = "";
 
                 String sql = "SELECT id, name, race, strength, agility, intelligence, wins, losses FROM heroes WHERE" + search;
                 Statement stmt = con.createStatement();
@@ -261,20 +279,23 @@ public class CombatCalls {
 
         if (winner){
             System.out.println(heroes.get(0).getName() + " has won the battle");
+            UpdateHero(con, connectionString, heroes.get(0).getId(), true);
+            UpdateHero(con, connectionString, heroes.get(1).getId(), false);
         }
         else {
             System.out.println(heroes.get(1).getName() + " has won the battle");
+            UpdateHero(con, connectionString, heroes.get(1).getId(), true);
+            UpdateHero(con, connectionString, heroes.get(0).getId(), false);
         }
 
         try {
             con = DriverManager.getConnection(connectionString,"cdwxnizx","bi0XwY7hGdr4e7u_lWpQh_8G45RxB2A3");
-            String requestedName = "";
 
             String sql = "INSERT INTO battles (name, fighter1, fighter2, winner)\n" +
                     "VALUES('"+ "IndividualDuel" +"', '"+id1+"', '"+id2+"', '"+winner+"');";
             Statement stmt = con.createStatement();
 
-            stmt.executeQuery(sql);
+            stmt.execute(sql);
 
 
         } catch (SQLException e){
@@ -288,5 +309,12 @@ public class CombatCalls {
                 }
             }
         }
+    }
+
+    public static void DeleteBattle(Connection con, String connectionString){
+        System.out.println("Enter Battle ID:");
+        Scanner sc = new Scanner(System.in);
+        int id = sc.nextInt();
+        RemoveCall(con, connectionString, "battles", id);
     }
 }
